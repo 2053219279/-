@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.demos.mapper.ProductMapper">
+    <insert id="insertProduct">
+        insert into product
+        (`product_name`,`specification`,`price`,`create_time`)
+        value (#{productName},#{specification},#{price},#{createTime})
+    </insert>
+    <update id="updateProduct">
+        update product
+        set `product_name` = #{productName},`specification` = #{specification}
+        where `product_id` = #{productId}
+    </update>
+    <delete id="deleteProduct">
+        delete from prodcut
+        where `product_id` = #{productId}
+    </delete>
+
+    <select id="getProduct" resultType="com.example.demo.demos.Entity.Product">
+        select product_id,product_name,specification,price,create_time
+        from product
+        <where>
+            <if test="productName != '' and productName != null ">
+                and product_name like concat('%',#{productName,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

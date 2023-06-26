@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.demos.mapper.DepositMapper">
+    <insert id="insertDeposit">
+        insert into deposit
+        (`product_id`,`number`,`deposit_time`,`store`,`product_price`)
+        value (#{productId},#{number},#{depositTime},#{store},#{productPrice})
+    </insert>
+
+    <select id="getDeposit" resultType="com.example.demo.demos.Entity.Deposit">
+        select deposit_id,product_id,`number`,deposit_time,store,product_price
+        from deposit
+        where 1=1
+        <if test="productId != '' and productId != null">
+            and product_id = #{productId}
+        </if>
+        <if test="productId != '' and productId != null">
+            and product_id = #{productId}
+        </if>
+        <if test="depositTime != '' and depositTime != null">
+            and deposit_time >= #{depositTime}
+        </if>
+        order by deposit_time desc
+    </select>
+</mapper>

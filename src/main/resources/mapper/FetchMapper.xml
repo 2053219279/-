@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.demos.mapper.FetchMapper">
+    <insert id="insertFetch">
+        insert into `fetch` (`product_id`,`fetch_time`,`number`,`store`,`product_price`)
+        values (#{productId},#{number},#{fetchTime},#{store},#{productPrice});
+    </insert>
+
+    <select id="getFetch" resultType="com.example.demo.demos.Entity.Fetch">
+        select fetch_id,product_id,`number`,fetch_time,store,`product_price`
+        from `fetch`
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.demos.mapper.RepertoryMapper">
+
+    <insert id="insertRepertory">
+        insert into repertory (`product_id`,`number`,`store`,`product_price`)
+        values (#{productId},#{number},#{store},#{productPrice});
+    </insert>
+    <update id="updateRepertory">
+        update repertory
+        set `number` = #{number}
+        where `product_id` = #{productId} and `store` = #{store}
+    </update>
+    <update id="updateRepertoryByNumber">
+        update repertory
+        set `number` = #{number}
+        where `product_id` = #{productId} and `store` = #{store}
+    </update>
+    <delete id="deleteRepertory">
+        delete from repertory
+        where `product_id` = #{productId}
+    </delete>
+    <select id="getRepertory" resultType="com.example.demo.demos.Entity.Repertory">
+        select *
+        from repertory
+        where 1=1
+        <if test="productId != '' and productId != null">
+            and product_id = #{productId}
+        </if>
+    </select>
+    <select id="getProductNumber" resultType="java.lang.Integer">
+        select `number`
+        from repertory
+        where product_id = #{productId} and store = #{store}
+    </select>
+    <select id="getRepertoryByProductId" resultType="com.example.demo.demos.Entity.Repertory">
+        select *
+        from repertory
+        where product_id = #{productId}
+    </select>
+</mapper>
